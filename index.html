@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+        
+        <meta charset="utf-8" />
+        <title>形势与政策在线查询系统</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
+
+        <!-- slick css -->
+        <link href="/assets/libs/slick-slider/slick/slick.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/libs/slick-slider/slick/slick-theme.css" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <!--夜晚模式CSS-->
+        <!--<link href="/assets/css/bootstrap-dark.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">-->
+        <!--<link href="assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css">-->
+        <!--日间模式CSS-->
+        <link href="/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css">
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css">
+    </head>
+
+    <body data-topbar="dark" data-layout="horizontal">
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            <header id="page-topbar">
+                <div class="topnav" style="margin-top: 0;">
+                <div class="container-fluid">
+                    
+                    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+                        <div class="container-fluid">
+                          <a class="navbar-brand" href="#"><span class="logo-lg">
+                            <img src="assets/images/logo.png" alt="logo-light" height="24">
+                        </span></a>
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                              <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/index.html">首页</a>
+                              </li>
+                                <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="/notice.html">Windows 插件版</a>
+                              </li>
+                            </ul>
+                            <!--<form class="d-flex" role="search">-->
+                            <!--  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
+                            <!--  <button class="btn btn-outline-success" type="submit">Search</button>-->
+                            <!--</form>-->
+                            <div class="dropdown d-inline-block user-dropdown">
+                            <div id="Login" style="text-align: right;">
+                                    </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </nav>
+                    
+                </div>
+            </div>
+            
+            </header>
+            <!-- ============================================================== -->
+            <!-- Start main Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <div class="page-content" style="margin-top:0;">
+                    <div class="container-fluid">
+                       <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <!--<h4 class="mb-sm-0">马克思题目查询-CSDN点个关注不过分吧 <a href="https://blog.csdn.net/qq_30817059">点击去关注</a></h4>-->
+                                    <h4>形势与政策题库查询,认真阅读《使用须知》</h4>
+                                    <div id="Login" style="text-align: right;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">输入需要查询的题目</label>
+                            <textarea class="form-control" id="subject" rows="3"></textarea>
+                          </div>
+                        <button class="btn btn-outline-primary" onclick="getSubject();">查询</button>
+                        <hr>
+                        <!-- end page title -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card border-dark mb-3 subjectNotice" style="white-space: pre-line">
+                                    
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <script>document.write(new Date().getFullYear())</script> © swback All rights reserved 苏ICP备2021003777号
+                            </div>
+                            <!--<div class="col-sm-6">-->
+                            <!--    <div class="text-sm-end d-none d-sm-block">-->
+                            <!--        Crafted with <i class="mdi mdi-heart text-danger"></i> By <a href="https://www.swback.cn/">SwBack</a>-->
+                            <!--    </div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </footer>
+            
+       
+            </div>
+            <!-- End main -->
+            
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="notice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">使用须知</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+               <!--<pre>-->
+<strong>系统由Swback开发,用于形势与政策题目查询,本站未做SQL注入等安全性保护,所以请勿部署在公网服务器。
+另外,吃水不忘挖井人,不要端起碗吃饭 放下碗骂娘！</strong><br>
+1. 站点账户采取邀请导入制,未开放自主注册功能。<br>
+
+2. 本站点主要为形势与政策进行题目训练复习为主。<br>
+
+3. 禁止将本站程序带入考场等地方进行使用,用户所有行为与站长无关。<br>
+
+4. 本站点在使用过程会存储用户使用过程中所产生的数据。<br>
+
+5. 站点内所有题目来源为百度、必应、Google等搜索引擎。<br>
+
+6. 站点所属人具有站点所有解释权。<br>
+
+7. 如果对本站点有任何异议,请立即停止使用。<br>
+
+8. 如果站点内容、账号侵犯到你的隐私,请联系站长进行删除。<br>
+
+9. 禁止一号多用,如需进行学习,请联系站长进行添加账号。<br>
+10. <strong style="color:red">禁止以任何形式,任何名义对该站点进行任何行为的网络攻击。</strong><br>
+
+11. <strong>用户继续登录,则认为使用者对以上说明没有异议,并坚持使用,并确定在使用的过程中产生的任何问题与站长无关。</strong><br>
+
+
+               <!--</pre>-->
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info"><a href="http://wpa.qq.com/msgrd?v=3&uin=1760349255&site=qq&menu=yes" style='color:red'>联系站长</a></button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">停止使用</button>
+                <button type='button' class='btn btn-outline-primary' ><font style='vertical-align: inherit;'><a style='color:red' href="/login.html">同意</a></font></button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- JAVASCRIPT -->
+        <!--<script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.1/base64.min.js"></script>-->
+        <!--<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>-->
+        <script src="assets/js/mobile-detect.min.js">
+        </script>
+        <script src="/assets/libs/jquery/jquery.min.js"></script>
+        <script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="/assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="/assets/libs/node-waves/waves.min.js"></script>
+
+        <!-- apexcharts js -->
+        <!--<script src="assets/libs/slick-slider/slick/slick.min.js"></script>-->
+
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+        <script src="assets/js/swback.js" ></script>
+        <script src="assets/js/app.js"></script>
+        <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            checkLogin();
+        });
+        </script>  
+    </body>
+</html>

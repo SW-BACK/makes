@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        <meta charset="utf-8" />
+        <title>用户登录</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+        <!-- Bootstrap Css -->
+        <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+        <!--Alert Css-->
+        <link href="assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body class="bg-pattern">
+        <!--<div class="bg-overlay"></div>-->
+        <div class="account-pages my-5 pt-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-lg-6 col-md-8">
+                        <div class="card">
+                            <div class="card-body p-4">
+                                <div class="">
+                                    <div class="text-center">
+                                        <a href="index.html" class="">
+                                            <img src="assets/images/logo.png" alt="" height="66" class="auth-logo logo-dark mx-auto">
+                                            
+                                        </a>
+                                    </div>
+                                    <!-- end row -->
+                                    
+                                    <p class="mb-5 text-center">用户登录</p>
+                                    <!--<form class="form-horizontal" >-->
+                                    <div id="alert">
+                                        
+                                    </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="mb-4">
+                                                    <!-- <label class="form-label" for="username">用户名</label> -->
+                                                    <input type="text" class="form-control" id="username" maxlength="16" placeholder="输入学号">
+                                                </div>
+                                                <div class="mb-4">
+                                                    <label class="form-label" for="userpassword">密码</label>
+                                                   <input type="password" class="form-control" id="userpassword" placeholder="请输入身份证后六位 x请替换为9">
+                                                </div>
+                                                <!-- <div class="mb-4">
+                                                    <label class="form-label" for="userpassword">验证码</label>
+                                                   <input type="text" class="form-control" id="yzm" placeholder="输入验证码" style="display: initial;width: 70%;">
+                                                   <img   onclick="this.src='captcha.php'+'?'+Math.random()" src="captcha.php"   />
+                                                </div> -->
+                                                <div class="row">
+                                                    <!-- <div class="col">
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input" id="customControlInline">
+                                                            <label  class="form-label form-check-label" for="customControlInline">记住账号</label>
+                                                        </div>
+                                                    </div> -->
+                                                    <!-- <div class="col-7">
+                                                       <div class="text-md-end mt-3 mt-md-0">
+                                                           <a href="recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> 忘记密码?</a>
+                                                       </div>
+                                                    </div> -->
+                                                </div>
+                                                <div class="d-grid mt-4">
+                                                    <button class="btn btn-primary waves-effect waves-light" onclick="login()" type="submit">登录</button>
+                                                    <br />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!--</form>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-5 text-center">
+                            <!--<p class="text-white-50">没有注册用户 ? <a href="register.html" class="fw-medium text-primary"> 注册 </a> </p>-->
+                            <p class="text-white-50">© <script>document.write(new Date().getFullYear())</script> Swback. Crafted with <i class="mdi mdi-heart text-danger"></i> By <a href="https://www.swback.cn/753.html">Swback</a></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <!-- end Account pages -->
+
+        <!-- JAVASCRIPT -->
+        <script src="assets/libs/jquery/jquery.min.js"></script>
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/libs/metismenu/metisMenu.min.js"></script>
+        <script src="assets/libs/simplebar/simplebar.min.js"></script>
+        <script src="assets/libs/node-waves/waves.min.js"></script>
+
+        <script src="assets/js/app.js"></script>
+        <script src="assets/libs/sweetalert2/sweetalert2.min.js"></script>
+<script>
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+    function login() {
+        var InputName = $('#username').val();
+        var InputPassword = $('#userpassword').val();
+        var yzm = "1234";
+        $.ajax({
+            url: "ajax.php?k=login",
+            dataType: "json",
+            async: true,
+            type: "post",
+            data: {
+                'username': InputName,
+                'password': InputPassword,
+                'yzm': yzm,
+            },
+            success: function(res) {
+                if (res.status == 1) {
+                    setCookie('token',res.data,1);
+                    Swal.fire({
+                    title: res.msg+'!',
+                    icon: 'success',
+                    confirmButtonText: "前往首页",
+                    }).then(function () {
+                            location.href = "/index.html";
+                        })
+                }else {
+                   $('#alert').html("<div class=' alert-danger alert-dismissible fade  alert show' role='alert'><button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button><font style='vertical-align: inherit;'><strong>提示！</strong>"+res.msg+" </font></div>");
+                }
+            }
+
+        });
+    }
+</script>
+    </body>
+</html>
